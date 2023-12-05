@@ -6,16 +6,15 @@ import { calcSpentBud } from "../helpers";
 import { toast } from "react-toastify";
 
 export default function ExpensesAdder({ budgets }) {
+  const data = JSON.parse(budgets) || [];
   // states & data management
   const [expenseManager, setExpenseManager] = useState(false);
-  
-  const data = JSON.parse(budgets) || [];
   const [isHidden, setIsHidden] = useState(data.length >= 2 ? true : false); // Manage the hidden state
-  
   const [dataCopy, setDataCopy] = useState(data ? [...data] : []);
-  
+
+  let detectChange = JSON.parse(localStorage.getItem("new-budget"));
   // all refs
-  const nameOfBudRef = useRef(""); 
+  const nameOfBudRef = useRef("");
   const formRef = useRef(null);
   const handleBudName = useRef(null);
   // form state managing
@@ -41,7 +40,10 @@ export default function ExpensesAdder({ budgets }) {
     };
 
     handleBUd();
-  }, [budgets]);
+    if (JSON.parse(localStorage.getItem("new-budget")).length > 1) {
+      setIsHidden(true);
+    }
+  }, [detectChange]);
 
   useEffect(() => {
     if (expenseManager) {
@@ -72,7 +74,10 @@ export default function ExpensesAdder({ budgets }) {
       <h2 className="h3">
         Add New{" "}
         <span className="accent">
-          {data ? data.length === 1 && `${data[0].budname}` : ""}
+          {JSON.parse(localStorage.getItem("new-budget"))
+            ? JSON.parse(localStorage.getItem("new-budget")).length === 1 &&
+              `${JSON.parse(localStorage.getItem("new-budget"))[0].budname}`
+            : ""}
         </span>{" "}
         Expense
       </h2>
@@ -100,19 +105,24 @@ export default function ExpensesAdder({ budgets }) {
             step={"1.00"}
           />
         </div>
-        <div className="grid-sx" style={{display:isHidden ? "block" : "none"}}>
+        <div
+          className="grid-sx"
+          style={{ display: isHidden ? "block" : "none" }}
+        >
           <label htmlFor="budgetCategory">Budget Category</label>
           <select name="budgetCategory" id="budgetCategory" required>
-            {
-              
-                  (expenseManager ? dataCopy : data).sort((opf, ops) => opf.createdAt - ops.createdAt)
-                  .map((opt) => {
-                    return (
-                      <option key={opt.id} value={opt.id}>
-                        {opt.budname}
-                      </option>
-                    );
-                  })}
+            {(expenseManager
+              ? dataCopy
+              : JSON.parse(localStorage.getItem("new-budget"))
+            )
+              .sort((opf, ops) => opf.createdAt - ops.createdAt)
+              .map((opt) => {
+                return (
+                  <option key={opt.id} value={opt.id}>
+                    {opt.budname}
+                  </option>
+                );
+              })}
           </select>
         </div>
         <input type="hidden" name="_action" value={"newExpense"} />

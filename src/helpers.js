@@ -13,7 +13,7 @@ export const randomBudgetClr = () => {
   return `${changableVal * 34} 65% 50%`;
 };
 
-export const createBudget = ({ budname, amount,color }) => {
+export const createBudget = ({ budname, amount, color }) => {
   let budInfo = {
     id: crypto.randomUUID(),
     budname,
