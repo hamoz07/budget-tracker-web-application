@@ -45,7 +45,7 @@ export async function DashboardAction({ request }) {
         budname: values.budget,
         amount: values.budgetamount,
       });
-      // window.location.href = window.location.pathname + '?t=' + new Date().getTime();
+      window.location.href = window.location.pathname + '?t=' + new Date().getTime();
       return toast.success(`${values.budget} Budget created successfully`)
     } catch {
       throw new Error("something wrong happened");
@@ -59,6 +59,7 @@ export async function DashboardAction({ request }) {
         amount: values.expenseAmount,
         budgetId: values.budgetCategory,
       });
+      
       return toast.success(`${values.expense} Expense Added`);
     } catch {
       throw new Error("something wrong happened");

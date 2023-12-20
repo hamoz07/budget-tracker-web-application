@@ -16,9 +16,6 @@ export default function ExpensesAdder({ budgets, expense }) {
   const dataexp = JSON.parse(localStorage.getItem("new-expense")) || [];
   const [expenses, setExpenses] = useState(dataexp);
 
-   (expenses);
-   (dataexp);
-
   // all refs
   const nameOfBudRef = useRef("");
   const formRef = useRef(null);
@@ -51,7 +48,7 @@ export default function ExpensesAdder({ budgets, expense }) {
   useEffect(() => {
     // this one
 
-     (access);
+    access;
 
     if (access.length === 1) {
       setTitleOfBud(access[0].budname);
@@ -66,7 +63,7 @@ export default function ExpensesAdder({ budgets, expense }) {
       setIsHidden(true);
     }
 
-     (titleOfBud);
+    titleOfBud;
   }, [budgets]);
 
   useEffect(() => {
@@ -87,7 +84,7 @@ export default function ExpensesAdder({ budgets, expense }) {
     } else {
       setAllExceeded(false);
     }
-  }, [dataCopy,data.length,expenseManager]);
+  }, [dataCopy, data.length, expenseManager]);
 
   useEffect(() => {
     if (!formState && formRef.current) {
@@ -96,8 +93,8 @@ export default function ExpensesAdder({ budgets, expense }) {
     }
   }, [formRef, formState]);
 
-   (dataCopy);
-   (data);
+  dataCopy;
+  data;
   //  (dataCopy.length === JSON.parse(budgets).length && expenseManager);
 
   return (
@@ -150,28 +147,47 @@ export default function ExpensesAdder({ budgets, expense }) {
                 step={"1.00"}
               />
             </div>
+
             <div
               className="grid-sx"
               style={{ display: isHidden ? "block" : "none" }}
             >
               <label htmlFor="budgetCategory">Budget Category</label>
-
-              <select name="budgetCategory" id="budgetCategory" required>
-                {data
-                  .filter(
-                    (budget) => !dataCopy.some((item) => item.id === budget.id)
-                  )
-                  .sort((opf, ops) => opf.createdAt - ops.createdAt)
-                  .map((opt) => {
-                    return (
-                      <option key={opt.id} value={opt.id}>
-                        {opt.budname}
-                      </option>
-                    );
-                  })}
-              </select>
+              {!isHidden ? (
+                <select name="budgetCategory" id="budgetCategory">
+                  {data
+                    .filter(
+                      (budget) =>
+                        !dataCopy.some((item) => item.id === budget.id)
+                    )
+                    .sort((opf, ops) => opf.createdAt - ops.createdAt)
+                    .map((opt) => {
+                      return (
+                        <option key={opt.id} value={opt.id}>
+                          {opt.budname}
+                        </option>
+                      );
+                    })}
+                </select>
+              ) : (
+                <select name="budgetCategory" id="budgetCategory" required>
+                  {data
+                    .filter(
+                      (budget) =>
+                        !dataCopy.some((item) => item.id === budget.id)
+                    )
+                    .sort((opf, ops) => opf.createdAt - ops.createdAt)
+                    .map((opt) => {
+                      return (
+                        <option key={opt.id} value={opt.id}>
+                          {opt.budname}
+                        </option>
+                      );
+                    })}
+                </select>
+              )}
             </div>
-            <input type="hidden" name="_action" value={"newExpense"} />
+            <input type="hidden" name="_action" value={"newExpense"}  />
             <button
               type="submit"
               className="btn btn--dark"

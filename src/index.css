@@ -628,7 +628,6 @@ table a {
   position: relative;
 }
 
-
 .btns{
   display: -webkit-box;
   display: -ms-flexbox;
@@ -641,4 +640,9 @@ table a {
   gap: var(--space-sm);
   justify-content: center;
   margin-top: 40px;
+}
+
+.hidden-select {
+  position: absolute;
+  left: -9999px;
 }
