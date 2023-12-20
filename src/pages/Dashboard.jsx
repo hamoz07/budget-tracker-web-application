@@ -127,7 +127,7 @@ export default function Dashboard() {
               <div className="grid-lg">
                 <div className="flex-lg">
                   <BudgetForm />
-                  <ExpensesAdder budgets={budget} />
+                  <ExpensesAdder budgets={budget} expense={expense} />
                 </div>
                 <h2>Budgets</h2>
                 <div className="budgets">
