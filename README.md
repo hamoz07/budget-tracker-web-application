@@ -10,6 +10,7 @@ Welcome to my budget tracker web application project. This project provides you 
 - [Authentication](#authentication)
 - [Responsive Design](#responsive-design)
 - [Demo Video](#demo-video)
+- [technologies and libraries used](#technologies-and-libraries-used)
 
 # features
 - enter budget name
@@ -29,9 +30,20 @@ Welcome to my budget tracker web application project. This project provides you 
 - No Bootstrap, CSS-only styling
 - fully reponsive on all screens
 
+--------------------------------------------------
+
+# technologies-and-libraries-used:
+ - Html
+ - css
+ - js
+ - react
+ - react-router-dom
+ - hero icons
+ - react-toastify
 
 # usage
   - you can use it from here: https://budget-tracker-web-application.vercel.app/
+
 --------------------------------------------------
 # authentication
 - entering name of user only
