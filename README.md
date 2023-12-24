@@ -1,4 +1,4 @@
-# ✨🌠💵💸💲 budget-tracker-web-application - manage yourself till you reach financial freedom
+# ✨🌠💵💸💲 budgetTrackerWebApplication - manage yourself till you reach financial freedom
 
 
 
